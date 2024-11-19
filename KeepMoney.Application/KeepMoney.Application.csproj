@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Common\" />
+    <None Remove="Tokens\" />
+    <None Remove="Tokens\Queries\" />
+    <None Remove="Common\Security\" />
+    <None Remove="Common\Persistence\" />
+    <None Remove="Common\Security\Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\" />
+    <Folder Include="Tokens\" />
+    <Folder Include="Tokens\Queries\" />
+    <Folder Include="Common\Security\" />
+    <Folder Include="Common\Persistence\" />
+    <Folder Include="Common\Security\Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="ErrorOr" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.11.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KeepMoney.Domain\KeepMoney.Domain.csproj" />
+  </ItemGroup>
+</Project>
