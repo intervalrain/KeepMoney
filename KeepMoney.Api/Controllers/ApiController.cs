@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace CleanArchitecture.Api.Controllers;
+namespace KeepMoney.Api.Controllers;
 
 [ApiController]
 [Authorize]
+[Route("api/[controller]")]
 public class ApiController : ControllerBase
 {
     protected ActionResult Problem(List<Error> errors)
