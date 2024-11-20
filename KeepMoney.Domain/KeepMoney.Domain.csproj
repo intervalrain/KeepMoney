@@ -8,8 +8,16 @@
 
   <ItemGroup>
     <None Remove="Users\" />
+    <None Remove="Transactions\" />
+    <None Remove="Common\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Users\" />
+    <Folder Include="Transactions\" />
+    <Folder Include="Common\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="ErrorOr" Version="2.0.1" />
   </ItemGroup>
 </Project>

@@ -1,8 +1,9 @@
-﻿namespace KeepMoney.Domain.Users;
+﻿using KeepMoney.Domain.Common;
 
-public class User
+namespace KeepMoney.Domain.Users;
+
+public class User : Entity
 {
-    public Guid Id { get; private set; }
     public string FirstName { get; private set; }
     public string LastName { get; private set; }
     public string Email { get; private set; }
@@ -11,8 +12,8 @@ public class User
     public string PasswordHash { get; private set; }
 
     private User(Guid id, string firstName, string lastName, string email, SubscriptionType subscriptionType, Role role, string passwordHash)
+        : base(id)
     {
-        Id = id;
         FirstName = firstName;
         LastName = lastName;
         Email = email;
