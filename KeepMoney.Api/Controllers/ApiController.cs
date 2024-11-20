@@ -9,7 +9,7 @@ namespace KeepMoney.Api.Controllers;
 [ApiController]
 [Authorize]
 [Route("api/[controller]")]
-public class ApiController : ControllerBase
+public abstract class ApiController : ControllerBase
 {
     protected ActionResult Problem(List<Error> errors)
     {
