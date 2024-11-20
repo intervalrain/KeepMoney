@@ -26,5 +26,7 @@ public class Transaction : Entity
     {
         return new Transaction(Guid.NewGuid(), date, categoryId, amount, note, userId, user);
     }
+
+    protected Transaction() : base(Guid.NewGuid()) { }
 }
 

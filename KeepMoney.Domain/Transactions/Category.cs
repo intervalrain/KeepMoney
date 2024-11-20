@@ -6,10 +6,10 @@ namespace KeepMoney.Domain.Transactions;
 public class Category : Entity
 {
     public string Name { get; set; }
-    public object UserId { get; set; }
+    public Guid UserId { get; set; }
     public User User { get; set; }
 
-    public Category(Guid id, string name, object userId, User user) : base(id)
+    public Category(Guid id, string name, Guid userId, User user) : base(id)
     {
         Name = name;
         UserId = userId;
@@ -20,5 +20,7 @@ public class Category : Entity
     {
         return new Category(Guid.NewGuid(), name, userId, user);
     }
+
+    protected Category() : base(Guid.NewGuid()) { }
 }
 

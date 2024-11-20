@@ -3,6 +3,7 @@
 public enum SubscriptionType
 {
     Basic,
-    Pro
+    Pro,
+    Canceled
 }
 

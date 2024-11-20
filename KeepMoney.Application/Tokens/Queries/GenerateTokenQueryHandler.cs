@@ -36,11 +36,11 @@ public class GenerateTokenQueryHandler : IRequestHandler<GenerateTokenQuery, Err
             email: user.Email,
             firstName: user.FirstName,
             lastName: user.LastName,
-            subscriptionType: user.SubscriptionType,
+            subscriptionType: user.Subscription.SubscriptionType,
             role: user.Role
         );
 
-        var authResult = new GenerateTokenResult(token, user.Email, user.FirstName, user.LastName, user.SubscriptionType);
+        var authResult = new GenerateTokenResult(token, user.Email, user.FirstName, user.LastName, user.Subscription.SubscriptionType);
 
         return authResult;
     }

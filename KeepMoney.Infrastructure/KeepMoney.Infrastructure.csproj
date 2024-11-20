@@ -10,11 +10,13 @@
     <None Remove="Common\" />
     <None Remove="Common\Persistence\" />
     <None Remove="Common\Security\" />
+    <None Remove="Common\Data\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\" />
     <Folder Include="Common\Persistence\" />
     <Folder Include="Common\Security\" />
+    <Folder Include="Common\Data\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
@@ -27,6 +29,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
     <PackageReference Include="Throw" Version="1.4.0" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KeepMoney.Application\KeepMoney.Application.csproj" />
