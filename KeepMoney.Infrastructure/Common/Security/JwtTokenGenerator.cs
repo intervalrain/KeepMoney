@@ -4,7 +4,6 @@ using System.Text;
 
 using KeepMoney.Application.Common.Security;
 using KeepMoney.Application.Common.Security.Models;
-using KeepMoney.Domain.Users;
 
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -20,7 +19,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         _jwtSettings = jwtOptions.Value;
     }
 
-    public string GenerateToken(Guid userId, Guid subscriptionId, string email, string firstName, string lastName, SubscriptionType subscriptionType, Role role)
+    public string GenerateToken(Guid userId, Guid subscriptionId, string email, string firstName, string lastName, List<string> roles, List<string> permissions)
     {
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret));
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -32,8 +31,9 @@ public class JwtTokenGenerator : IJwtTokenGenerator
             new(ClaimTypes.Email, email),
             new(ClaimTypes.Sid, userId.ToString()),
             new(ClaimTypes.UserData, subscriptionId.ToString()),
-            new(ClaimTypes.Role, role.ToString())
         };
+        roles.ForEach(role => claims.Add(new(ClaimTypes.Role, role)));
+        permissions.ForEach(permission => claims.Add(new("permissions", permission)));
 
         var token = new JwtSecurityToken(
             _jwtSettings.Issuer,

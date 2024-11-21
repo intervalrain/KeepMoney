@@ -31,10 +31,10 @@ public class CurrentUserProvider : ICurrentUserProvider
             var firstName = GetSingleClaimValue(ClaimTypes.Name);
             var lastName = GetSingleClaimValue(ClaimTypes.GivenName);
             var email = GetSingleClaimValue(ClaimTypes.Email);
-            var role = GetSingleClaimValue(ClaimTypes.Role);
+            var roles = GetClaimValues(ClaimTypes.Role);
+            var permissions = GetClaimValues("permissions");
 
-            return new CurrentUser(id, subscriptionId, firstName, lastName, email,
-                role == "admin" ? Role.Admin : role == "dev" ? Role.Dev : Role.User);
+            return new CurrentUser(id, subscriptionId, firstName, lastName, email, roles, permissions);
         }
     }
 
@@ -42,5 +42,11 @@ public class CurrentUserProvider : ICurrentUserProvider
         _httpContextAccessor.HttpContext!.User.Claims
             .Single(claim => claim.Type == claimType)
             .Value;
+
+    private List<string> GetClaimValues(string claimType) =>
+        _httpContextAccessor.HttpContext!.User.Claims
+            .Where(claim => claim.Type == claimType)
+            .Select(claim => claim.Value)
+            .ToList();
 }
 

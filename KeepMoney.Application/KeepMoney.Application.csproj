@@ -21,6 +21,8 @@
     <None Remove="Common\Security\Request\" />
     <None Remove="Common\Security\Policies\" />
     <None Remove="Common\Security\Permissions\" />
+    <None Remove="Common\Security\Roles\" />
+    <None Remove="Common\Behaviors\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\" />
@@ -37,6 +39,8 @@
     <Folder Include="Common\Security\Request\" />
     <Folder Include="Common\Security\Policies\" />
     <Folder Include="Common\Security\Permissions\" />
+    <Folder Include="Common\Security\Roles\" />
+    <Folder Include="Common\Behaviors\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.4.1" />
@@ -45,6 +49,7 @@
     <PackageReference Include="FluentValidation" Version="11.11.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KeepMoney.Domain\KeepMoney.Domain.csproj" />

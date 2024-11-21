@@ -17,12 +17,14 @@ public class GenerateTokenQueryHandler : IRequestHandler<GenerateTokenQuery, Err
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
     private readonly IPasswordHasher _passwordHasher;
     private readonly IUserRepository _userRepository;
+    private readonly IPermissionProvider _permissionProvider;
 
-    public GenerateTokenQueryHandler(IJwtTokenGenerator jwtTokenGenerator, IPasswordHasher passwordHasher, IUserRepository userRepository)
+    public GenerateTokenQueryHandler(IJwtTokenGenerator jwtTokenGenerator, IPasswordHasher passwordHasher, IUserRepository userRepository, IPermissionProvider permissionProvider)
     {
         _jwtTokenGenerator = jwtTokenGenerator;
         _passwordHasher = passwordHasher;
         _userRepository = userRepository;
+        _permissionProvider = permissionProvider;
     }
 
     public async Task<ErrorOr<GenerateTokenResult>> Handle(GenerateTokenQuery request, CancellationToken cancellationToken)
@@ -37,8 +39,8 @@ public class GenerateTokenQueryHandler : IRequestHandler<GenerateTokenQuery, Err
             email: user.Email,
             firstName: user.FirstName,
             lastName: user.LastName,
-            subscriptionType: user.Subscription.SubscriptionType,
-            role: user.Role
+            roles: user.Roles,
+            permissions: _permissionProvider.GetPermissions(user.Roles, user.Subscription.SubscriptionType)
         );
 
         var authResult = new GenerateTokenResult(token, user.Email, user.FirstName, user.LastName, user.Subscription.SubscriptionType);

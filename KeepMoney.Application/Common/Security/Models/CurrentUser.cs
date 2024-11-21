@@ -8,4 +8,5 @@ public record CurrentUser(
     string FirstName,
     string LastName,
     string Email,
-    Role Role);
+    List<string> Roles,
+    List<string> Permissions);

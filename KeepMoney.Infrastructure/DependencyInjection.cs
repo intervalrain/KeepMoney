@@ -38,7 +38,9 @@ public static class DependencyInjection
 
     private static IServiceCollection AddAuthorization(this IServiceCollection services)
     {
+        services.AddScoped<IAuthorizationService, AuthorizationService>();
         services.AddScoped<ICurrentUserProvider, CurrentUserProvider>();
+        services.AddSingleton<IPolicyEnforcer, PolicyEnforcer>();
 
         return services;
     }
@@ -49,6 +51,7 @@ public static class DependencyInjection
 
         services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
         services.AddSingleton<IPasswordHasher, PasswordHasher>();
+        services.AddScoped<IPermissionProvider, PermissionProvider>();
 
         services
             .ConfigureOptions<JwtBearerTokenValidationConfiguration>()

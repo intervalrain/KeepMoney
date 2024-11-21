@@ -1,5 +1,6 @@
 ﻿using KeepMoney.Application.Common.Persistence;
 using KeepMoney.Application.Common.Security;
+using KeepMoney.Application.Common.Security.Roles;
 using KeepMoney.Domain.Users;
 using KeepMoney.Infrastructure.Common.Data;
 
@@ -28,7 +29,7 @@ public class UserRepository : GenericRepository<User>, IUserRepository
                 lastName: "Hu",
                 email: "intervalrain@gmail.com",
                 subscription: Subscription.Create(SubscriptionType.Basic, DateTime.UtcNow.AddDays(30)),
-                role: Role.Admin,
+                roles: new List<string> { Role.Admin },
                 passwordHash: _passwordHasher.Hash("12345678")));
             await SaveChangesAsync();
 

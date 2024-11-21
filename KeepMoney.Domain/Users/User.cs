@@ -17,23 +17,23 @@ public class User : Entity
     public string LastName { get; private set; }
     public string Email { get; private set; }
     public Subscription Subscription { get; private set; }
-    public Role Role { get; private set; }
+    public List<string> Roles { get; private set; }
     public string PasswordHash { get; private set; }
 
-    private User(Guid id, string firstName, string lastName, string email, Subscription subscription, Role role, string passwordHash)
+    private User(Guid id, string firstName, string lastName, string email, Subscription subscription, List<string> roles, string passwordHash)
         : base(id)
     {
         FirstName = firstName;
         LastName = lastName;
         Email = email;
         Subscription = subscription;
-        Role = role;
+        Roles = roles;
         PasswordHash = passwordHash;
     }
 
-    public static User Create(string firstName, string lastName, string email, Subscription subscription, Role role, string passwordHash)
+    public static User Create(string firstName, string lastName, string email, Subscription subscription, List<string> roles, string passwordHash)
     {
-        return new User(Guid.NewGuid(), firstName, lastName, email, subscription, role, passwordHash);
+        return new User(Guid.NewGuid(), firstName, lastName, email, subscription, roles, passwordHash);
     }
 
     public ErrorOr<Success> AddTransaction(Transaction transaction)
