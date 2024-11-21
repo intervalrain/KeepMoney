@@ -4,6 +4,6 @@ namespace KeepMoney.Application.Common.Security;
 
 public interface ICurrentUserProvider
 {
-    CurrentUser GetCurrentUser { get; }
+    CurrentUser CurrentUser { get; }
 }
 

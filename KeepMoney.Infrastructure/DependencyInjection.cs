@@ -20,12 +20,13 @@ public static class DependencyInjection
         services
             .AddHttpContextAccessor()
             .AddPersistence()
+            .AddAuthorization()
             .AddAuthentication(configuration);
 
         return services;
     }
 
-    public static IServiceCollection AddPersistence(this IServiceCollection services)
+    private static IServiceCollection AddPersistence(this IServiceCollection services)
     {
         services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("KeepMoneyDb", new InMemoryDatabaseRoot()));
 
@@ -35,7 +36,14 @@ public static class DependencyInjection
         return services;
     }
 
-    public static IServiceCollection AddAuthentication(this IServiceCollection services, IConfiguration configuration)
+    private static IServiceCollection AddAuthorization(this IServiceCollection services)
+    {
+        services.AddScoped<ICurrentUserProvider, CurrentUserProvider>();
+
+        return services;
+    }
+
+    private static IServiceCollection AddAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.Section));
 

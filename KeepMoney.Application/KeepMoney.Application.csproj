@@ -16,6 +16,11 @@
     <None Remove="Users\" />
     <None Remove="Transactions\" />
     <None Remove="Transactions\Events\" />
+    <None Remove="Transactions\Queries\" />
+    <None Remove="Transactions\Commands\" />
+    <None Remove="Common\Security\Request\" />
+    <None Remove="Common\Security\Policies\" />
+    <None Remove="Common\Security\Permissions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\" />
@@ -27,6 +32,11 @@
     <Folder Include="Users\" />
     <Folder Include="Transactions\" />
     <Folder Include="Transactions\Events\" />
+    <Folder Include="Transactions\Queries\" />
+    <Folder Include="Transactions\Commands\" />
+    <Folder Include="Common\Security\Request\" />
+    <Folder Include="Common\Security\Policies\" />
+    <Folder Include="Common\Security\Permissions\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.4.1" />

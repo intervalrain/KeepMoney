@@ -1,5 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Xml.Linq;
 
 using KeepMoney.Application.Common.Security;
 using KeepMoney.Application.Common.Security.Models;
@@ -20,18 +21,20 @@ public class CurrentUserProvider : ICurrentUserProvider
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public CurrentUser GetCurrentUser
+    public CurrentUser CurrentUser
     {
         get
         {
             _httpContextAccessor.HttpContext.ThrowIfNull();
-            var id = Guid.Parse(GetSingleClaimValue("id"));
-            var firstName = GetSingleClaimValue(JwtRegisteredClaimNames.Name);
-            var lastName = GetSingleClaimValue(JwtRegisteredClaimNames.FamilyName);
-            var email = GetSingleClaimValue(JwtRegisteredClaimNames.Email);
+            var id = Guid.Parse(GetSingleClaimValue(ClaimTypes.Sid));
+            var subscriptionId = Guid.Parse(GetSingleClaimValue(ClaimTypes.UserData));
+            var firstName = GetSingleClaimValue(ClaimTypes.Name);
+            var lastName = GetSingleClaimValue(ClaimTypes.GivenName);
+            var email = GetSingleClaimValue(ClaimTypes.Email);
             var role = GetSingleClaimValue(ClaimTypes.Role);
 
-            return new CurrentUser(id, firstName, lastName, email, role == "admin" ? Role.Admin : role == "dev" ? Role.Dev : Role.User);
+            return new CurrentUser(id, subscriptionId, firstName, lastName, email,
+                role == "admin" ? Role.Admin : role == "dev" ? Role.Dev : Role.User);
         }
     }
 
