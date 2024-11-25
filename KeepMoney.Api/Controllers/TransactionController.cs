@@ -24,14 +24,12 @@ public class TransactionController : ApiController
     public async Task<IActionResult> GetAllTransactions()
     {
         var currentUser = _currentUserProvider.CurrentUser;
-        var query = new GetAllTransactionQuery(currentUser.Id, currentUser.SubscriptionId);
+        var query = new GetAllTransactionQuery(currentUser.Id);
 
         var result = await _mediator.Send(query);
 
         return result.Match(
-            ts => Ok(ts.ConvertAll(ToDto)),
+            ts => Ok(ts.ConvertAll(TransactionResponse.ToDto)),
             Problem);
     }
-
-    private TransactionResponse ToDto(Transaction t) => new(t.Date, t.Category, t.Amount, t.Note);
 }

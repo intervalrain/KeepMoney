@@ -10,7 +10,7 @@ using MediatR;
 namespace KeepMoney.Application.Transactions.Queries;
 
 [Authorize(Permissions = Common.Security.Permissions.Permission.Transaction.GetAll, Policies = Policy.SelfOrAdmin)]
-public record GetAllTransactionQuery(Guid UserId, Guid SubscriptionId) : IAuthorizableRequest<ErrorOr<List<Transaction>>>;
+public record GetAllTransactionQuery(Guid UserId) : IAuthorizableRequest<ErrorOr<List<Transaction>>>;
 
 public class GetAllTransactionsQueryHandler : IRequestHandler<GetAllTransactionQuery, ErrorOr<List<Transaction>>>
 {

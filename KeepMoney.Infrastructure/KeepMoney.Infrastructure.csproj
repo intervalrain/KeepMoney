@@ -11,12 +11,16 @@
     <None Remove="Common\Persistence\" />
     <None Remove="Common\Security\" />
     <None Remove="Common\Data\" />
+    <None Remove="Common\Persistence\Repositories\" />
+    <None Remove="Common\Persistence\Configurations\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\" />
     <Folder Include="Common\Persistence\" />
     <Folder Include="Common\Security\" />
     <Folder Include="Common\Data\" />
+    <Folder Include="Common\Persistence\Repositories\" />
+    <Folder Include="Common\Persistence\Configurations\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
@@ -30,6 +34,10 @@
     <PackageReference Include="Throw" Version="1.4.0" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KeepMoney.Application\KeepMoney.Application.csproj" />

@@ -4,7 +4,7 @@ using KeepMoney.Application.Common.Security.Roles;
 using KeepMoney.Domain.Users;
 using KeepMoney.Infrastructure.Common.Data;
 
-namespace KeepMoney.Infrastructure.Common.Persistence;
+namespace KeepMoney.Infrastructure.Common.Persistence.Repositories;
 
 public class UserRepository : GenericRepository<User>, IUserRepository
 {
@@ -15,13 +15,13 @@ public class UserRepository : GenericRepository<User>, IUserRepository
         : base(context)
     {
         _passwordHasher = passwordHasher;
-        InitializeDataAsync().Wait();
+        //InitializeDataAsync().Wait();
     }
 
     private async Task InitializeDataAsync()
     {
         if (_dataInitialized) return;
-        var user  = await GetAsync(u => u.Email == "intervalrain@gmail.com");
+        var user = await GetAsync(u => u.Email == "intervalrain@gmail.com");
         if (!user.Any())
         {
             await AddAsync(User.Create(
@@ -40,7 +40,7 @@ public class UserRepository : GenericRepository<User>, IUserRepository
     public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
     {
         var result = await GetAsync(u => u.Email == email, cancellationToken: cancellationToken);
-        return result.FirstOrDefault(); 
+        return result.FirstOrDefault();
     }
 }
 

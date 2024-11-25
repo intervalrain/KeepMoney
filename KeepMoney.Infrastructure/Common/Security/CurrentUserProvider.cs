@@ -4,7 +4,6 @@ using System.Xml.Linq;
 
 using KeepMoney.Application.Common.Security;
 using KeepMoney.Application.Common.Security.Models;
-using KeepMoney.Domain.Users;
 
 using Microsoft.AspNetCore.Http;
 
@@ -27,14 +26,13 @@ public class CurrentUserProvider : ICurrentUserProvider
         {
             _httpContextAccessor.HttpContext.ThrowIfNull();
             var id = Guid.Parse(GetSingleClaimValue(ClaimTypes.Sid));
-            var subscriptionId = Guid.Parse(GetSingleClaimValue(ClaimTypes.UserData));
             var firstName = GetSingleClaimValue(ClaimTypes.Name);
             var lastName = GetSingleClaimValue(ClaimTypes.GivenName);
             var email = GetSingleClaimValue(ClaimTypes.Email);
             var roles = GetClaimValues(ClaimTypes.Role);
             var permissions = GetClaimValues("permissions");
 
-            return new CurrentUser(id, subscriptionId, firstName, lastName, email, roles, permissions);
+            return new CurrentUser(id, firstName, lastName, email, roles, permissions);
         }
     }
 

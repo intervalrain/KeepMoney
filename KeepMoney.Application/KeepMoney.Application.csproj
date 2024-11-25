@@ -23,6 +23,9 @@
     <None Remove="Common\Security\Permissions\" />
     <None Remove="Common\Security\Roles\" />
     <None Remove="Common\Behaviors\" />
+    <None Remove="Users\Queries\" />
+    <None Remove="Tokens\Commands\" />
+    <None Remove="Users\Commands\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\" />
@@ -41,6 +44,9 @@
     <Folder Include="Common\Security\Permissions\" />
     <Folder Include="Common\Security\Roles\" />
     <Folder Include="Common\Behaviors\" />
+    <Folder Include="Users\Queries\" />
+    <Folder Include="Tokens\Commands\" />
+    <Folder Include="Users\Commands\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.4.1" />

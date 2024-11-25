@@ -61,6 +61,11 @@ public class User : Entity
         return Result.Success;
     }
 
+    public ErrorOr<Success> Subscribe(int days)
+    {
+        return Subscription.Extend(days);
+    }
+
     protected User() : base(Guid.NewGuid()) { }
 }
 

@@ -2,6 +2,8 @@
 
 using KeepMoney.Domain.Common;
 
+using Microsoft.EntityFrameworkCore;
+
 namespace KeepMoney.Application.Common.Persistence;
 
 public interface IRepository<TEntity> where TEntity : Entity
@@ -16,5 +18,6 @@ public interface IRepository<TEntity> where TEntity : Entity
         CancellationToken cancellationToken = default);
 
     Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default);
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }
 

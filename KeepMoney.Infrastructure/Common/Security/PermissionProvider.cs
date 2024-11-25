@@ -10,16 +10,28 @@ public class PermissionProvider : IPermissionProvider
 {
     public List<string> GetPermissions(List<string> roles, SubscriptionType subscriptionType)
     {
-        if (roles.Contains(Role.Admin) || subscriptionType == SubscriptionType.Pro)
-        {
-            return _allPermissionTypes.SelectMany(GetPermissionValues).ToList();
-        }
-        return GetPermissionValues(typeof(Application.Common.Security.Permissions.Permission.Transaction));
+        return roles.Contains(Role.Admin) || subscriptionType == SubscriptionType.Pro
+            ? _allPermissionTypes.SelectMany(GetPermissionValues).ToList()
+            : _userPermissions;
     }
+
+    private readonly List<string> _userPermissions = new()
+    {
+        Application.Common.Security.Permissions.Permission.Transaction.Get,
+        Application.Common.Security.Permissions.Permission.Transaction.GetAll,
+        Application.Common.Security.Permissions.Permission.Transaction.Set,
+        Application.Common.Security.Permissions.Permission.Transaction.Update,
+        Application.Common.Security.Permissions.Permission.Transaction.Delete,
+
+        Application.Common.Security.Permissions.Permission.User.Get,
+        Application.Common.Security.Permissions.Permission.User.Update,
+        Application.Common.Security.Permissions.Permission.User.Delete,
+    };
 
     private readonly Type[] _allPermissionTypes = new Type[]
     {
-        typeof(Application.Common.Security.Permissions.Permission.Transaction)
+        typeof(Application.Common.Security.Permissions.Permission.Transaction),
+        typeof(Application.Common.Security.Permissions.Permission.User)
     };
 
     private List<string> GetPermissionValues(Type type) =>

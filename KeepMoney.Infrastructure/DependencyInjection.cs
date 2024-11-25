@@ -2,7 +2,7 @@
 using KeepMoney.Application.Common.Security;
 using KeepMoney.Application.Common.Security.Models;
 using KeepMoney.Infrastructure.Common.Data;
-using KeepMoney.Infrastructure.Common.Persistence;
+using KeepMoney.Infrastructure.Common.Persistence.Repositories;
 using KeepMoney.Infrastructure.Common.Security;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -28,7 +28,8 @@ public static class DependencyInjection
 
     private static IServiceCollection AddPersistence(this IServiceCollection services)
     {
-        services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("KeepMoneyDb", new InMemoryDatabaseRoot()));
+        var db = new InMemoryDatabaseRoot();
+        services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("KeepMoneyDb", db));
 
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<ITransactionRepository, TransactionRepository>();

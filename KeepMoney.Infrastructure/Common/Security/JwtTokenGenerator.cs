@@ -19,7 +19,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         _jwtSettings = jwtOptions.Value;
     }
 
-    public string GenerateToken(Guid userId, Guid subscriptionId, string email, string firstName, string lastName, List<string> roles, List<string> permissions)
+    public string GenerateToken(Guid userId, string email, string firstName, string lastName, List<string> roles, List<string> permissions)
     {
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret));
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -30,7 +30,6 @@ public class JwtTokenGenerator : IJwtTokenGenerator
             new(ClaimTypes.GivenName, lastName),
             new(ClaimTypes.Email, email),
             new(ClaimTypes.Sid, userId.ToString()),
-            new(ClaimTypes.UserData, subscriptionId.ToString()),
         };
         roles.ForEach(role => claims.Add(new(ClaimTypes.Role, role)));
         permissions.ForEach(permission => claims.Add(new("permissions", permission)));

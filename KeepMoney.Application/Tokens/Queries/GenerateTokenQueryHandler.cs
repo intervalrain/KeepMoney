@@ -35,7 +35,6 @@ public class GenerateTokenQueryHandler : IRequestHandler<GenerateTokenQuery, Err
 
         var token = _jwtTokenGenerator.GenerateToken(
             userId: user.Id,
-            subscriptionId: user.Subscription.Id,
             email: user.Email,
             firstName: user.FirstName,
             lastName: user.LastName,

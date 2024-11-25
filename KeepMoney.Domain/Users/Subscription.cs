@@ -1,26 +1,46 @@
-﻿using KeepMoney.Domain.Common;
+﻿using ErrorOr;
 
 namespace KeepMoney.Domain.Users;
 
-public class Subscription : Entity
+public class Subscription
 {
-    public SubscriptionType SubscriptionType { get; }
-    public DateTime Due { get; } 
+    public SubscriptionType SubscriptionType { get; private set; }
+    public DateTimeOffset ExpiryDate { get; private set; }
+    public bool IsActive => DateTimeOffset.UtcNow <= ExpiryDate;
+    public int RemainingDays => IsActive ? (int)(ExpiryDate - DateTimeOffset.UtcNow).TotalDays : 0;
 
-    private Subscription(Guid id, SubscriptionType subscriptionType, DateTime due)
-        : base(id)
+    private Subscription(SubscriptionType subscriptionType, DateTimeOffset expiryDate)
     {
         SubscriptionType = subscriptionType;
-        Due = due;
+        ExpiryDate = expiryDate;
     }
 
-    public static Subscription Create(SubscriptionType subscriptionType, DateTime due)
+    public static Subscription Create(SubscriptionType subscriptionType, DateTimeOffset? expiryDate = null)
     {
-        return new Subscription(Guid.NewGuid(), subscriptionType, due);
+        return new Subscription(subscriptionType, expiryDate ?? DateTimeOffset.UtcNow);
     }
 
-    public static readonly Subscription Canceled = Create(SubscriptionType.Canceled, DateTime.UtcNow);
+    public static readonly Subscription Canceled = Create(SubscriptionType.Canceled);
 
-    protected Subscription() : base(Guid.NewGuid()) { }
+    public ErrorOr<Success> Extend(int days)
+    {
+        if (days <= 0)
+        {
+            return Error.Validation("Subscription.Extend", "Days must be positive");
+        }
+
+        try
+        {
+            var baseDate = IsActive ? ExpiryDate : DateTimeOffset.UtcNow;
+            baseDate.AddDays(days);
+            SubscriptionType = SubscriptionType.Pro;
+            return Result.Success;
+        }
+        catch (Exception ex)
+        {
+            return Error.Failure("Subscription.Extend", ex.Message);
+        }
+    }
+
+    protected Subscription() { }
 }
-

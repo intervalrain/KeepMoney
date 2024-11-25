@@ -2,7 +2,7 @@
 using KeepMoney.Domain.Transactions;
 using KeepMoney.Infrastructure.Common.Data;
 
-namespace KeepMoney.Infrastructure.Common.Persistence;
+namespace KeepMoney.Infrastructure.Common.Persistence.Repositories;
 
 public class TransactionRepository : GenericRepository<Transaction>, ITransactionRepository
 {

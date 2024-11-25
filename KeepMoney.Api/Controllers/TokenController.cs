@@ -1,4 +1,6 @@
-﻿using KeepMoney.Application.Tokens.Queries;
+﻿using KeepMoney.Api.Models;
+using KeepMoney.Application.Tokens.Commands;
+using KeepMoney.Application.Tokens.Queries;
 
 using MediatR;
 
@@ -17,7 +19,17 @@ public class TokenController : ApiController
         _mediator = mediator;
     }
 
-    [HttpPost]
+    [HttpPost("register_acount")]
+    public async Task<IActionResult> RegisterAcount(string firstName, string lastName, string email, string password)
+    {
+        var command = new RegisterUserCommand(firstName, lastName, email, password);
+        var result = await _mediator.Send(command);
+        return result.Match(
+            user => Ok(UserResponse.ToDto(user)),
+            Problem);
+    }
+
+    [HttpPost("generate_token")]
     public async Task<IActionResult> GenerateToken(GenerateTokenQuery request)
     {
         var result = await _mediator.Send(request);
