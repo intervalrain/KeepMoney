@@ -1,0 +1,27 @@
+<Project>
+    <PropertyGroup>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    </PropertyGroup>
+    <ItemGroup>
+        <!-- ASP.NET -->
+                <PackageVersion Include="BCrypt.Net-Next" Version="4.0.3" />
+        <PackageVersion Include="ErrorOr" Version="2.0.1" />
+        <PackageVersion Include="FluentValidation" Version="11.11.0" />
+        <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
+        <PackageVersion Include="MediatR" Version="12.4.1" />
+        <PackageVersion Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+        <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
+        <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.1" />
+        <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+        <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.0" />
+        <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.0" />
+        <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0" />
+        <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
+        <PackageVersion Include="Microsoft.Extensions.Options" Version="9.0.0" />
+        <PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="8.2.1" />
+        <PackageVersion Include="Swashbuckle.AspNetCore" Version="7.0.0" />
+        <PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="8.2.1" />
+        <PackageVersion Include="System.Security.Claims" Version="4.3.0" />
+        <PackageVersion Include="Throw" Version="1.4.0" />
+    </ItemGroup>
+</Project>
