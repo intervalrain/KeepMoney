@@ -69,7 +69,4 @@
   <ItemGroup>
     <ProjectReference Include="..\KeepMoney.Domain\KeepMoney.Domain.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="stylecop.json" />
-  </ItemGroup>
 </Project>
