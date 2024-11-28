@@ -29,7 +29,7 @@ public sealed class JwtBearerTokenValidationConfiguration : IConfigureNamedOptio
             ValidateIssuerSigningKey = true,
             ValidIssuer = _jwtSettings.Issuer,
             ValidAudience = _jwtSettings.Audience,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret)),
         };
     }
 }

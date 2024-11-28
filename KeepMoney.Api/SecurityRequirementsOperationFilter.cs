@@ -15,27 +15,26 @@ public class SecurityRequirementsOperationFilter : IOperationFilter
                 Reference = new OpenApiReference
                 {
                     Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
+                    Id = "Bearer",
+                },
             },
             Array.Empty<string>()
-        }
+        },
     };
-
 
     public void Apply(OpenApiOperation operation, OperationFilterContext context)
     {
         var methodAttributes = context.MethodInfo.GetCustomAttributes(true);
         var controllerAttributes = context.MethodInfo.DeclaringType!.GetCustomAttributes(true);
 
-        var hasAllowAnonymous = methodAttributes.OfType<AllowAnonymousAttribute>().Any() || 
+        var hasAllowAnonymous = methodAttributes.OfType<AllowAnonymousAttribute>().Any() ||
                                 controllerAttributes.OfType<AllowAnonymousAttribute>().Any();
 
         operation.Security = new List<OpenApiSecurityRequirement>();
 
         if (!hasAllowAnonymous)
         {
-            operation.Security.Add(_jwtTokenSecurityRequirement);   
+            operation.Security.Add(_jwtTokenSecurityRequirement);
         }
     }
 }

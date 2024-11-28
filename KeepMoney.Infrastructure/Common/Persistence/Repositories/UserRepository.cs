@@ -15,12 +15,23 @@ public class UserRepository : GenericRepository<User>, IUserRepository
         : base(context)
     {
         _passwordHasher = passwordHasher;
-        //InitializeDataAsync().Wait();
+
+        // InitializeDataAsync().Wait();
+    }
+
+    public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
+    {
+        var result = await GetAsync(u => u.Email == email, cancellationToken: cancellationToken);
+        return result.FirstOrDefault();
     }
 
     private async Task InitializeDataAsync()
     {
-        if (_dataInitialized) return;
+        if (_dataInitialized)
+        {
+            return;
+        }
+
         var user = await GetAsync(u => u.Email == "intervalrain@gmail.com");
         if (!user.Any())
         {
@@ -36,11 +47,4 @@ public class UserRepository : GenericRepository<User>, IUserRepository
             _dataInitialized = true;
         }
     }
-
-    public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
-    {
-        var result = await GetAsync(u => u.Email == email, cancellationToken: cancellationToken);
-        return result.FirstOrDefault();
-    }
 }
-

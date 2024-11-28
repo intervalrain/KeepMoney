@@ -1,6 +1,8 @@
 using KeepMoney.Api.Models;
 using KeepMoney.Application.Common.Security;
 using KeepMoney.Application.Users.Queries;
+using KeepMoney.Application.Users.Queries.GetUserQuery;
+using KeepMoney.Application.Users.Queries.GetUsersQuery;
 
 using MediatR;
 
@@ -50,6 +52,4 @@ public class UserController : ApiController
     {
         throw new NotImplementedException();
     }
-
-    
 }

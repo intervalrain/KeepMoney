@@ -33,8 +33,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.Roles)
                .HasConversion(
                     v => string.Join(',', v),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList()
-                );
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList());
 
         builder.OwnsOne(u => u.Subscription, subscription =>
         {
@@ -58,8 +57,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                     v => string.Join(',', v),
                     v => v.Split(',', StringSplitOptions.RemoveEmptyEntries)
                           .Select(id => Guid.Parse(id))
-                          .ToList()
-                );
+                          .ToList());
     }
 }
 

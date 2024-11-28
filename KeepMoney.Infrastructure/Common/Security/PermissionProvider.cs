@@ -31,7 +31,7 @@ public class PermissionProvider : IPermissionProvider
     private readonly Type[] _allPermissionTypes = new Type[]
     {
         typeof(Application.Common.Security.Permissions.Permission.Transaction),
-        typeof(Application.Common.Security.Permissions.Permission.User)
+        typeof(Application.Common.Security.Permissions.Permission.User),
     };
 
     private List<string> GetPermissionValues(Type type) =>

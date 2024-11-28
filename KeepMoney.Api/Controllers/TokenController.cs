@@ -1,6 +1,7 @@
 ﻿using KeepMoney.Api.Models;
 using KeepMoney.Application.Tokens.Commands;
-using KeepMoney.Application.Tokens.Queries;
+using KeepMoney.Application.Tokens.Commands.RegisterUserCommand;
+using KeepMoney.Application.Tokens.Queries.GenerateTokenQuery;
 
 using MediatR;
 

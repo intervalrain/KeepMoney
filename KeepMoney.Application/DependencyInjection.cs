@@ -1,7 +1,6 @@
-﻿using KeepMoney.Application.Common.Behaviors;
-
-using FluentValidation;
-
+﻿using FluentValidation;
+using KeepMoney.Application.Common.Behaviors;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace KeepMoney.Application;

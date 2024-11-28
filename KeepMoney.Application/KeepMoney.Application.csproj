@@ -26,6 +26,11 @@
     <None Remove="Users\Queries\" />
     <None Remove="Tokens\Commands\" />
     <None Remove="Users\Commands\" />
+    <None Remove="stylecop.json" />
+    <None Remove="Tokens\Commands\RegisterUserCommand\" />
+    <None Remove="Tokens\Queries\GenerateTokenQuery\" />
+    <None Remove="Users\Queries\GetUsersQuery\" />
+    <None Remove="Users\Queries\GetUserQuery\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\" />
@@ -47,17 +52,24 @@
     <Folder Include="Users\Queries\" />
     <Folder Include="Tokens\Commands\" />
     <Folder Include="Users\Commands\" />
+    <Folder Include="Tokens\Commands\RegisterUserCommand\" />
+    <Folder Include="Tokens\Queries\GenerateTokenQuery\" />
+    <Folder Include="Users\Queries\GetUsersQuery\" />
+    <Folder Include="Users\Queries\GetUsersQuery\" />
+    <Folder Include="Users\Queries\GetUserQuery\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" />
     <PackageReference Include="ErrorOr" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     <PackageReference Include="FluentValidation" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KeepMoney.Domain\KeepMoney.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
 </Project>

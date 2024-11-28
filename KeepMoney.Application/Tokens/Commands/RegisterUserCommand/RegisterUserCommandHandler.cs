@@ -1,26 +1,12 @@
 using ErrorOr;
 
-using FluentValidation;
-
 using KeepMoney.Application.Common.Persistence;
 using KeepMoney.Application.Common.Security;
 using KeepMoney.Domain.Users;
 
 using MediatR;
 
-namespace KeepMoney.Application.Tokens.Commands;
-
-public record RegisterUserCommand(string FirstName, string LastName, string Email, string Password) : IRequest<ErrorOr<User?>>;
-
-public class RegisterUserCommandValidator : AbstractValidator<RegisterUserCommand>
-{
-    public RegisterUserCommandValidator()
-    {
-        RuleFor(x => x.FirstName).MinimumLength(2).MaximumLength(32);
-        RuleFor(x => x.LastName).MinimumLength(2).MaximumLength(32);
-        RuleFor(x => x.Email).EmailAddress();
-    }
-}
+namespace KeepMoney.Application.Tokens.Commands.RegisterUserCommand;
 
 public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, ErrorOr<User?>>
 {
@@ -40,6 +26,7 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, E
         {
             return Error.Conflict("User.Conflict", "The email has been registered.");
         }
+
         var user = User.Create(
             command.FirstName,
             command.LastName,

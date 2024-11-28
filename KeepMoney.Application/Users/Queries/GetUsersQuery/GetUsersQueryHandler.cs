@@ -1,16 +1,11 @@
 ﻿using ErrorOr;
 
 using KeepMoney.Application.Common.Persistence;
-using KeepMoney.Application.Common.Security.Request;
-using KeepMoney.Application.Common.Security.Roles;
 using KeepMoney.Domain.Users;
 
 using MediatR;
 
-namespace KeepMoney.Application.Users.Queries;
-
-[Authorize(Permissions = Common.Security.Permissions.Permission.User.GetAll, Roles = Role.Admin)]
-public record GetUsersQuery(Guid UserId) : IAuthorizableRequest<ErrorOr<List<User>>>;
+namespace KeepMoney.Application.Users.Queries.GetUsersQuery;
 
 public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, ErrorOr<List<User>>>
 {

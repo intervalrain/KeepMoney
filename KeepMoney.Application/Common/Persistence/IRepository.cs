@@ -6,14 +6,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KeepMoney.Application.Common.Persistence;
 
-public interface IRepository<TEntity> where TEntity : Entity
+public interface IRepository<TEntity>
+    where TEntity : Entity
 {
     Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default);
     Task DeleteAsync(TEntity entity, CancellationToken cancellationToken = default);
     Task<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
     Task<IEnumerable<TEntity>> GetAsync(
-        Expression<Func<TEntity, bool>> filter = null,
-        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+        Expression<Func<TEntity, bool>>? filter = null,
+        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
         string includeProperties = "",
         CancellationToken cancellationToken = default);
 

@@ -24,7 +24,7 @@ public class TransactionController : ApiController
     public async Task<IActionResult> GetAllTransactions()
     {
         var currentUser = _currentUserProvider.CurrentUser;
-        var query = new GetAllTransactionQuery(currentUser.Id);
+        var query = new GetAllTransactionsQuery(currentUser.Id);
 
         var result = await _mediator.Send(query);
 

@@ -7,7 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KeepMoney.Infrastructure.Common.Persistence;
 
-public abstract class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : Entity
+public abstract class GenericRepository<TEntity> : IRepository<TEntity>
+    where TEntity : Entity
 {
     private readonly DbContext _context;
     private readonly DbSet<TEntity> _dbSet;
@@ -35,11 +36,12 @@ public abstract class GenericRepository<TEntity> : IRepository<TEntity> where TE
         {
             _dbSet.Attach(entity);
         }
+
         _dbSet.Remove(entity);
         await Task.CompletedTask;
     }
 
-    public async Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "", CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>>? filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, string includeProperties = "", CancellationToken cancellationToken = default)
     {
         IQueryable<TEntity> query = _dbSet;
 

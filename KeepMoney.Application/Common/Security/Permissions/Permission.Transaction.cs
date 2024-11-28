@@ -8,7 +8,7 @@ public static partial class Permission
         public const string Get = "get:transaction";
         public const string GetAll = "get:transactions";
         public const string Update = "update:transaction";
-        public const string Delete = "delete:transaction"; 
+        public const string Delete = "delete:transaction";
     }
 }
 

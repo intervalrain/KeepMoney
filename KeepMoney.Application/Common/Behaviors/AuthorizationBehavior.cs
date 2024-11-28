@@ -1,8 +1,8 @@
-﻿using ErrorOr;
+﻿using System.Reflection;
+using ErrorOr;
 using KeepMoney.Application.Common.Security;
 using KeepMoney.Application.Common.Security.Request;
 using MediatR;
-using System.Reflection;
 
 namespace KeepMoney.Application.Common.Behaviors;
 public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>

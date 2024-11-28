@@ -8,11 +8,12 @@ public class Transaction : Entity
     public DateTime Date { get; set; }
     public string Category { get; set; }
     public decimal Amount { get; set; }
-    public string Note { get; set; }
+    public string? Note { get; set; } = null;
     public Guid UserId { get; set; }
     public User User { get; set; }
 
-    public Transaction(Guid id, DateTime date, string category, decimal amount, string note, Guid userId, User user) : base(id)
+    public Transaction(Guid id, DateTime date, string category, decimal amount, string note, Guid userId, User user)
+        : base(id)
     {
         Date = date;
         Category = category;
@@ -27,6 +28,11 @@ public class Transaction : Entity
         return new Transaction(Guid.NewGuid(), date, category, amount, note, userId, user);
     }
 
-    protected Transaction() : base(Guid.NewGuid()) { }
+    protected Transaction()
+        : base(Guid.NewGuid())
+    {
+        Category = string.Empty;
+        User = User.Empty;
+    }
 }
 

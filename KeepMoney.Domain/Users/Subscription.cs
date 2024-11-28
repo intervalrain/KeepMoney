@@ -32,7 +32,7 @@ public class Subscription
         try
         {
             var baseDate = IsActive ? ExpiryDate : DateTimeOffset.UtcNow;
-            baseDate.AddDays(days);
+            ExpiryDate = baseDate.AddDays(days);
             SubscriptionType = SubscriptionType.Pro;
             return Result.Success;
         }
@@ -42,5 +42,7 @@ public class Subscription
         }
     }
 
-    protected Subscription() { }
+    protected Subscription()
+    {
+    }
 }

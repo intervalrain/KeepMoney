@@ -30,7 +30,7 @@ public static class DependencyInjection
                 Scheme = "Bearer",
                 BearerFormat = "JWT",
                 In = ParameterLocation.Header,
-                Description = "JWT Authorization header using the Bearer scheme."
+                Description = "JWT Authorization header using the Bearer scheme.",
             });
 
             options.OperationFilter<SecurityRequirementsOperationFilter>();
